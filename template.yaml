@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: FunciOn lambda para invalidar distribucion de CloudFront
+
+Resources:
+    Invalidator:
+      Type: AWS::Serverless::Function
+      Properties:
+        Architectures:
+          - arm64
+        Runtime: python3.8
+        CodeUri: ./src/
+        Handler: invalidator.handle_invalidator
+        Description: FunciOn lambda para invalidar distribucion de CloudFront
+        FunctionName: handle_invalidator
+        Environment:
+          Variables:
+            CLOUDFRONT_DISTRIBUTION_ID: ID_DE_DISTRO_DE_CLOUDFRONT
